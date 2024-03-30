@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { Login } from "../pages";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   ArrowPathIcon,
@@ -17,8 +18,8 @@ import {
 
 const products = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
+    name: "About us",
+    description: "Get a better understanding of who you trusting",
     href: "#",
     icon: ChartPieIcon,
   },
@@ -58,6 +59,7 @@ function classNames(...classes) {
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [modal, setModal] = useState(false);
 
   return (
     <header className="bg-white dark:bg-gray-800 fixed w-screen z-[100]">
@@ -88,7 +90,7 @@ export function Header() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 dark:text-white">
-              Product
+              Who we are
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400 dark:text-gray-300"
                 aria-hidden="true"
@@ -172,11 +174,23 @@ export function Header() {
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
-            href="#"
-            className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+            onClick={() => setModal(!modal)}
+            className="text-sm font-semibold leading-6 cursor-pointer text-gray-900 dark:text-white"
           >
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
+          {modal && (
+            <div className="absolute top-1/2 ">
+              <div
+                id="authentication-modal"
+                tabindex="-1"
+                aria-hidden="true"
+                class="flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+              >
+                <Login />
+              </div>
+            </div>
+          )}
         </div>
       </nav>
       <Dialog
@@ -256,12 +270,22 @@ export function Header() {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
+                <button
+                  onClick={() => setModal(!modal)}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
-                  Log in
-                </a>
+                  Login
+                </button>
+                {modal && (
+                  <div
+                    id="authentication-modal"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                  >
+                    <Login />
+                  </div>
+                )}
               </div>
             </div>
           </div>
