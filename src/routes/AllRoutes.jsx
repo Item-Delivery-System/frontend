@@ -3,7 +3,7 @@ import { Home } from "../pages";
 
 export const AllRoutes = () => {
   return (
-    <div className="dark:bg-gray-700">
+    <div>
       <Routes>
         <Route path="/" exact element={<Home />} />
       </Routes>
