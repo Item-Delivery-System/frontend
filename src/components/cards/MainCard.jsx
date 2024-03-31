@@ -25,7 +25,7 @@ export const MainCard = () => {
           onMouseEnter={handleMouseEnter}
           className="w-[60px] h-[60px] bg-cover rounded-[100%]"
         />
-        <p>Ludis</p>
+        <p>ayele</p>
       </div>
 
       {isPopoverOpen && (
@@ -111,6 +111,7 @@ export const MainCard = () => {
         Maximum Goods Capacity <b>3</b>
       </div>
       <div className="overflow-x-auto mt-4 flex space-x-4">
+        <InCard />
         <InCard />
         <InCard />
         <InCard />
